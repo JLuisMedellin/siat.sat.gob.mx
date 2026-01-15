@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal informativo del Sistema Integral de Atención Tributaria." />
+  <title>SIAT | SAT</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #0f172a;
+      --panel: #111827;
+      --card: #0b1224;
+      --accent: #5eead4;
+      --accent-2: #7c3aed;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --stroke: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(94, 234, 212, 0.12), transparent 25%),
+                  radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.14), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 32px 20px 48px;
+    }
+    .page {
+      width: min(1100px, 100%);
+      background: linear-gradient(145deg, var(--panel), #0c1326);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      padding: 32px clamp(20px, 3vw, 40px);
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      position: relative;
+      overflow: hidden;
+    }
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, rgba(94, 234, 212, 0.05), rgba(124, 58, 237, 0.05));
+      mask-image: radial-gradient(circle at 30% 20%, black 0 30%, transparent 50%),
+                  radial-gradient(circle at 90% 0%, black 0 15%, transparent 35%);
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.25), rgba(124, 58, 237, 0.25));
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      font-weight: 700;
+      border: 1px solid var(--stroke);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .title {
+      line-height: 1.1;
+    }
+    .title h1 {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 24px);
+      letter-spacing: 0.2px;
+    }
+    .title span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.3px;
+    }
+    .tag {
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--stroke);
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 46px);
+      letter-spacing: -0.6px;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 720px;
+      line-height: 1.6;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid var(--stroke);
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, #2dd4bf, #7c3aed);
+      color: #0b1224;
+      border-color: transparent;
+      box-shadow: 0 12px 35px rgba(124, 58, 237, 0.35);
+    }
+    .btn:hover { transform: translateY(-1px); border-color: rgba(255, 255, 255, 0.15); }
+    .btn:active { transform: translateY(0); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+      min-height: 140px;
+      display: grid;
+      gap: 10px;
+    }
+    .card h3 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: 0.1px;
+    }
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      border: 1px solid var(--stroke);
+    }
+    footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .list {
+      display: grid;
+      gap: 8px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .note {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    @media (max-width: 640px) {
+      body { padding: 18px 12px 36px; }
+      .page { padding: 24px 18px; }
+      header { flex-direction: column; align-items: flex-start; }
+      .cta-row { width: 100%; }
+      .btn { flex: 1; justify-content: center; }
+      .btn.secondary { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <a class="brand" href="#">
+        <div class="badge">SAT</div>
+        <div class="title">
+          <h1>SIAT · SAT</h1>
+          <span>Sistema Integral de Atención Tributaria</span>
+        </div>
+      </a>
+      <div class="tag">Portal informativo · Versión preliminar</div>
+    </header>
+
+    <section class="hero">
+      <h2>Atención tributaria clara, ágil y en un solo lugar.</h2>
+      <p>
+        Bienvenido al portal preliminar del Sistema Integral de Atención Tributaria (SIAT).
+        Aquí encontrarás información básica sobre los servicios de acompañamiento, orientación
+        y seguimiento que estarán disponibles en esta plataforma.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:contacto@siat.gob.mx">Escríbenos</a>
+        <a class="btn" href="#servicios">Ver servicios</a>
+        <span class="pill">En línea 24/7</span>
+      </div>
+    </section>
+
+    <section id="servicios" class="grid">
+      <article class="card">
+        <h3>Orientación personalizada</h3>
+        <p>Canales de contacto para resolver dudas sobre obligaciones fiscales, declaraciones y trámites frecuentes.</p>
+        <div class="pill">Correo · Chat · Módulos</div>
+      </article>
+      <article class="card">
+        <h3>Trámites prioritarios</h3>
+        <p>Registro y seguimiento de RFC, citas presenciales, constancias de situación fiscal y generación de comprobantes.</p>
+        <div class="pill">RFC · Constancias · Citas</div>
+      </article>
+      <article class="card">
+        <h3>Transparencia y cumplimiento</h3>
+        <p>Información sobre derechos de las personas contribuyentes y mejores prácticas para mantenerte al corriente.</p>
+        <div class="pill">Guías · Listas de verificación</div>
+      </article>
+    </section>
+
+    <section class="grid" style="margin-top: 16px;">
+      <article class="card">
+        <h3>Próximas actualizaciones</h3>
+        <p>Estamos preparando módulos de autenticación, panel de seguimiento y carga segura de documentos.</p>
+        <ul class="list">
+          <li>Acceso con cuenta única</li>
+          <li>Tableros de avance por trámite</li>
+          <li>Alertas y recordatorios automatizados</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Contacto directo</h3>
+        <p>Si requieres asistencia inmediata, contáctanos y con gusto te apoyamos.</p>
+        <div class="note">
+          Correo: <a href="mailto:contacto@siat.gob.mx" class="btn" style="margin-top:8px;">contacto@siat.gob.mx</a><br />
+          Horario de atención: Lunes a viernes de 9:00 a 18:00 (hora del centro).
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>SIAT · SAT — Portal informativo preliminar.</span>
+      <span class="pill">Última actualización: enero 2026</span>
+    </footer>
+  </main>
+</body>
+</html>
+
