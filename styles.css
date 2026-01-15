@@ -20,21 +20,20 @@ body {
   font-family: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
-  display: flex;
-  justify-content: center;
-  padding: 0px 15px 32px;
+  display: block;
+  padding: 0 15px 32px;
   height: 99.9%;
 }
 
 .page {
-  width: min(1200px, 100%);
+  width: 100%;
   display: grid;
   gap: 14px;
 }
 
 .page-header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .page-header-content img {
@@ -76,11 +75,16 @@ body {
   top: 10px;
 }
 
-.data-table {
+.data-table,
+.data-table2,
+.data-table3 {
   width: 100%;
   border-collapse: collapse;
   background: var(--bg);
-  
+  table-layout: auto;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .data-table td {
@@ -88,7 +92,7 @@ body {
   font-size: 15px;
   border: none;
   letter-spacing: 0.03em;
-
+  text-align: left;
 }
 
 .data-table td.label {
@@ -117,7 +121,7 @@ body {
     font-size: 15px;
     border: none;
     letter-spacing: 0.03em;
-
+    text-align: left;
 }
 
 .data-table2 td.label {
@@ -146,7 +150,7 @@ body {
     font-size: 15px;
     border: none;
     letter-spacing: 0.03em;
-
+    text-align: left;
 }
 
 .data-table3 td.label {
@@ -169,7 +173,7 @@ body {
   .panel-heading { font-size: 13px; padding: 7px 10px; }
   .data-table td,
   .data-table2 td,
-  .data-table3 td { font-size: 13px; padding: 8px 8px; }
+  .data-table3 td { font-size: 13px; padding: 8px 8px; line-height: 1.35; }
   .data-table td.label { width: 46%; }
   .data-table2 td.label { width: 36%; }
   .data-table3 td.label { width: 28%; }
@@ -180,10 +184,26 @@ body {
   .page-header-content img { width: 200px; }
   .data-table td,
   .data-table2 td,
-  .data-table3 td { font-size: 12.5px; padding: 7px 6px; }
+  .data-table3 td { font-size: 12px; padding: 7px 6px; line-height: 1.35; word-break: normal; hyphens: auto; }
   .data-table td.label { width: 48%; text-align: left; }
   .data-table2 td.label { width: 40%; text-align: left; }
   .data-table3 td.label { width: 36%; text-align: left; }
   .panel { border-radius: 5px; }
+}
+
+@media (max-width: 600px) {
+  .data-table,
+  .data-table2,
+  .data-table3 {
+    width: 100%;
+    table-layout: fixed;
+  }
+  .data-table td,
+  .data-table2 td,
+  .data-table3 td {
+    font-size: 13px;
+    padding: 6px 6px;
+    line-height: 1.35;
+  }
 }
 
