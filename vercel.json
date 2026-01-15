@@ -1,0 +1,11 @@
+{
+  "cleanUrls": false,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/qr/faces/pages/mobile/validadorqr.jsf",
+      "destination": "/qr/faces/pages/mobile/validadorqr.html"
+    }
+  ]
+}
+
