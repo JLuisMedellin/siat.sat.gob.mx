@@ -1,0 +1,78 @@
+:root {
+  --bg: linear-gradient(#fdfbf6, #f7f1e6);
+  --border: #b78f62;
+  --border-strong: #9b6a3c;
+  --panel-top: linear-gradient(#f4e5d0, #c39c6c, #b48658);
+  --panel-body: #f8f4ed;
+  --text: #3c2f27;
+  --label: #4a3a30;
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  padding: 18px 12px 32px;
+}
+
+.page {
+  width: min(1200px, 100%);
+  display: grid;
+  gap: 12px;
+}
+
+.alert-bar {
+  background: linear-gradient(#f8f4ed, #f1e5d3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.panel-heading {
+  background: var(--panel-top);
+  color: #2c1f12;
+  font-weight: 600;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-strong);
+  font-size: 14px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel-body);
+}
+
+.data-table td {
+  padding: 9px 12px;
+  font-size: 14px;
+  border: 1px solid #d2b48c;
+}
+
+.data-table td.label {
+  width: 38%;
+  color: var(--label);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  body { padding: 12px 8px 24px; }
+  .data-table td { font-size: 13px; padding: 8px 10px; }
+  .data-table td.label { width: 46%; }
+}
+
